@@ -26,8 +26,9 @@ export default function TimelineInterval({
 
         setHoverInterval(interval);
     };
+
     const width = mainItem.span > 1 ?  76 * mainItem.span - 16 : 60
-console.log(index, disabled)
+
     if(!color){
         color = '#046fcc';
         if(disabled){

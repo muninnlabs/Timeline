@@ -26,7 +26,7 @@ export default function Timeline({ timelineData, selectedIntervalRender, tooltip
                 <div className='timeline'>
                     {timelineData &&
                         timelineData
-                        .sort((a, b) => (a.id > b.id) ? 1 : -1)
+                            .sort((a, b) => (a.id > b.id ? 1 : -1))
                             .map((data, index) => {
                                 const classname = classNames('tooltip-wrapper', {
                                     'tooltip-wrapper__first': index === 0,
@@ -39,10 +39,8 @@ export default function Timeline({ timelineData, selectedIntervalRender, tooltip
 
                                 const activeCircle =
                                     selectedInterval && (selectedInterval.index === index || selectedInterval.index === index + 1);
-                                const newColor = timelineData[index+1]?.color ? timelineData[index+1].color : data.color;
-                                //#8c8c8c
+                                const newColor = timelineData[index + 1]?.color ? timelineData[index + 1].color : data.color;
                                 const hasIntervalData = !!data.intervalData;
-                                console.log('-*-*-*-', index, hasIntervalData)
 
                                 return (
                                     <Fragment key={data.id}>
@@ -56,9 +54,8 @@ export default function Timeline({ timelineData, selectedIntervalRender, tooltip
                                             onClickHandle={intervalClickHandling}
                                             selectedInterval={selectedInterval}
                                             tooltipRender={tooltipDataRender}
-                                            color = {data.color}
-                                            disabled = {!hasIntervalData}
-
+                                            color={data.color}
+                                            disabled={!hasIntervalData}
                                         />
 
                                         <TimelineCircle
@@ -66,22 +63,22 @@ export default function Timeline({ timelineData, selectedIntervalRender, tooltip
                                             AIRAC={data.AIRAC}
                                             gregorian={data.gregorian}
                                             format={formatDate}
-                                            color = {newColor}
+                                            color={newColor}
                                         />
 
                                         {timelineData.length - 1 === index && (
                                             <TimelineInterval
                                                 mainItem={data}
                                                 previousItem={timelineData[index - 1]}
-                                                index={index+1}
+                                                index={index + 1}
                                                 tooltipClassname={classname}
                                                 isSelectable={isSelectable}
-                                                isActive={selectedInterval && selectedInterval.index === index+1}
+                                                isActive={selectedInterval && selectedInterval.index === index + 1}
                                                 onClickHandle={intervalClickHandling}
                                                 selectedInterval={selectedInterval}
                                                 tooltipRender={tooltipDataRender}
-                                                color = {data.color}
-                                                hasIntervalData = {hasIntervalData}
+                                                color={data.color}
+                                                hasIntervalData={hasIntervalData}
                                             />
                                         )}
                                     </Fragment>

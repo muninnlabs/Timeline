@@ -2,7 +2,6 @@ import Timeline from './Timeline/'
 import {fixedTimelineData, fixedTimelineData2, fixedTimelineData3} from './Timeline/mockedData';
 import { Table } from 'antd';
 
-
 const columns = [
     {
         title: 'Name (all screens)',
@@ -38,8 +37,6 @@ const tooltipIntervalData = (initialValue, finalValue) => {
         <Table columns={columns} dataSource={[initialValue]} pagination={false} />
     )
 }
-
-
 
 function App() {
     return (
