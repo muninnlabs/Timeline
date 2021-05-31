@@ -25,7 +25,8 @@ body {
     display: block;
     width: 16px;
     height: 16px;
-    background: url('../images/UFN-boundary.svg') center no-repeat transparent;
+    background: url('data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwNDZmY2M7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5VRk4tYm91bmRhcnk8L3RpdGxlPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIwIDkgMTMgOSAxMyAxNiAxNiAxNiAxNiA5IDE2IDcgMTYgMCAxMyAwIDEzIDcgMCA3IDAgOSIvPjwvc3ZnPg==') center no-repeat transparent;
+    background-size: 16px;
     content: '';
     z-index: 99;
 }
@@ -36,7 +37,8 @@ body {
     display: block;
     width: 16px;
     height: 16px;
-    background: url('../images/BOT-boundary.svg') center no-repeat transparent;
+    background: url('data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwNDZmY2M7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5CT1QtYm91bmRhcnk8L3RpdGxlPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIxNiA3IDMgNyAzIDAgMCAwIDAgNyAwIDkgMCAxNiAzIDE2IDMgOSAxNiA5IDE2IDciLz48L3N2Zz4=') center no-repeat transparent;
+    background-size: 16px;
     content: '';
     z-index: 99;
 }
