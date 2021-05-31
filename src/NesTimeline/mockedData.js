@@ -24,14 +24,11 @@ export const fixedTimelineData = [
         id: 3004,
         AIRAC: 1911,
         gregorian: faker.date.between('1911-01-01', '2020-12-31'),
-        span:3,
+        span:1,
         intervalData: {
             key:faker.random.uuid(),
             name: 'Jhon Doe',
-            age: faker.random.number({
-                min: 10,
-                max: 50
-            }),
+            age: 10,
             address: `Avenue Jacques Georgin`
         }
     },
@@ -42,10 +39,7 @@ export const fixedTimelineData = [
         intervalData: {
             key:faker.random.uuid(),
             name: 'Jhon Doe',
-            age: faker.random.number({
-                min: 10,
-                max: 50
-            }),
+            age: 11,
             address: `Avenue Jacques Georgin`
         }
     },
@@ -53,7 +47,6 @@ export const fixedTimelineData = [
         id: 3006,
         AIRAC: 2020,
         span:1,
-
     },
     {
         id: 3007,
@@ -63,10 +56,7 @@ export const fixedTimelineData = [
         intervalData: {
             key:faker.random.uuid(),
             name: 'Jhon Doe',
-            age: faker.random.number({
-                min: 10,
-                max: 50
-            }),
+            age: 12,
             address: `Avenue Jacques Georgin`
         }
     },
@@ -74,21 +64,17 @@ export const fixedTimelineData = [
         id: 3008,
         AIRAC: 2028,
         gregorian: faker.date.between('1911-01-01', '2020-12-31'),
-        span:2,
-      
+        span:1,
     },
     {
         id: 3009,
         AIRAC: 2030,
         gregorian: faker.date.between('1911-01-01', '2020-12-31'),
-        span:2,
+        span:1,
         intervalData: {
             key:faker.random.uuid(),
             name: 'Jhon Doe',
-            age: faker.random.number({
-                min: 10,
-                max: 50
-            }),
+            age: 13,
             address: `Avenue Jacques Georgin`
         }
     },
@@ -100,10 +86,7 @@ export const fixedTimelineData = [
         intervalData: {
             key:faker.random.uuid(),
             name: 'Jhon Doe',
-            age: faker.random.number({
-                min: 10,
-                max: 50
-            }),
+            age: 14,
             address: `Avenue Jacques Georgin`
         }
     },

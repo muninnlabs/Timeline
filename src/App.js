@@ -1,5 +1,5 @@
-import Timeline from './Timeline/'
-import {fixedTimelineData, fixedTimelineData2, fixedTimelineData3} from './Timeline/mockedData';
+import NesTimeline from './NesTimeline'
+import {fixedTimelineData, fixedTimelineData2, fixedTimelineData3} from './NesTimeline/mockedData';
 import { Table } from 'antd';
 
 const columns = [
@@ -23,16 +23,16 @@ const columns = [
     }
 ];
 
-const selectedIntervalData = (initialValue, finalValue) => {
+const selectedIntervalData = (intervalValue) => {
 
     return (
         <>
-            <Table  columns={columns} dataSource={[initialValue]} pagination={false} />
+            <Table  columns={columns} dataSource={[intervalValue]} pagination={false} />
         </>
     );
 }
 
-const tooltipIntervalData = (initialValue, finalValue) => {
+const tooltipIntervalData = (initialValue) => {
     return(
         <Table columns={columns} dataSource={[initialValue]} pagination={false} />
     )
@@ -41,24 +41,24 @@ const tooltipIntervalData = (initialValue, finalValue) => {
 function App() {
     return (
         <div className='App'>
-            <Timeline 
+            <NesTimeline 
                 timelineData={fixedTimelineData2} 
-                selectedIntervalRender={selectedIntervalData} 
-                tooltipDataRender={tooltipIntervalData}
+                selectedIntervalRenderer={selectedIntervalData} 
+                tooltipDataRenderer={tooltipIntervalData}
                 isSelectable = {false}
                 formatDate='DD-MM-YYYY'
                 />
-            <Timeline 
-                timelineData = {fixedTimelineData} 
-                selectedIntervalRender = {selectedIntervalData} 
-                tooltipDataRender = {tooltipIntervalData}
+            <NesTimeline 
+                timelineData = {fixedTimelineData3} 
+                selectedIntervalRenderer = {selectedIntervalData} 
+                tooltipDataRenderer = {tooltipIntervalData}
                 isSelectable = {true}
                 formatDate = 'DD-MMM-YYYY'
                 /> 
-            <Timeline 
-                timelineData={fixedTimelineData3} 
-                selectedIntervalRender={selectedIntervalData} 
-                tooltipDataRender={tooltipIntervalData}
+            <NesTimeline 
+                timelineData={fixedTimelineData} 
+                selectedIntervalRenderer={selectedIntervalData} 
+                tooltipDataRenderer={tooltipIntervalData}
                 isSelectable = {true}
                 formatDate='DD-MM-YYYY'
             />

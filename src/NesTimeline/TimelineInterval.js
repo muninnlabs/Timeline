@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import TimelineTooltip from './Timeline-tooltip';
+import TimelineTooltip from './TimelineTooltip';
 
 export default function TimelineInterval({
     mainItem,
@@ -11,31 +11,28 @@ export default function TimelineInterval({
     isActive,
     onClickHandle,
     selectedInterval,
-    tooltipRender,
+    tooltipRenderer,
     color,
     disabled = false
 }) {
-    const [hoverInterval, setHoverInterval] = useState();
 
+    const [hoverInterval, setHoverInterval] = useState();
     const showTooltip = () => {
         const interval = {
             index: index,
             initial: previousItem,
             final: mainItem
         };
-
         setHoverInterval(interval);
     };
+    const width = mainItem.span > 1 ? 76 * mainItem.span - 16 : 60;
 
-    const width = mainItem.span > 1 ?  76 * mainItem.span - 16 : 60
-
-    if(!color){
+    if (!color) {
         color = '#046fcc';
-        if(disabled){
-            color= '#8c8c8c';
+        if (disabled) {
+            color = '#8c8c8c';
         }
     }
-   
 
     return (
         <div
@@ -49,8 +46,8 @@ export default function TimelineInterval({
             }}
             onMouseOver={() => showTooltip(index)}
             onMouseLeave={() => setHoverInterval()}
-            style={{ 
-                width: width 
+            style={{
+                width: width
             }}
         >
             <div
@@ -59,10 +56,11 @@ export default function TimelineInterval({
                     width: width,
                     background: color
                 }}
-            ></div>
-            {hoverInterval && (
+            >
+            </div>
+            {hoverInterval && tooltipRenderer && (
                 <div className={tooltipClassname}>
-                    <TimelineTooltip tootipContent={tooltipRender(mainItem?.intervalData, previousItem?.intervalData)} />
+                    <TimelineTooltip tootipContent={tooltipRenderer(mainItem?.intervalData, previousItem?.intervalData)} />
                 </div>
             )}
         </div>

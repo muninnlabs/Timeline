@@ -2,17 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
-export default function TimelineCircle({ 
-    active, 
-    AIRAC, 
-    gregorian, 
-    format = 'DD-MM-YYYY',
-    color ='#046fcc' }) {
-
+function TimelineCircle({ active, AIRAC, gregorian, format = 'DD-MM-YYYY', color = '#046fcc' }) {
     return (
         <div className='timeline-item'>
             <span
-            style ={{border: `2px solid ${color}`}}
+                style={{ border: `2px solid ${color}` }}
                 className={classNames('timeline-circle', {
                     'timeline-circle-active': active
                 })}
@@ -24,3 +18,5 @@ export default function TimelineCircle({
         </div>
     );
 }
+
+export default TimelineCircle;

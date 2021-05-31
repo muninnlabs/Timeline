@@ -1,10 +1,11 @@
 import React from 'react'
-import './Timeline-tooltip.css';
+import './TimelineTooltip.css';
 
-export default function TimelineTooltip({tootipContent}) {
+function TimelineTooltip({tootipContent}) {
     return (
         <div className='timeline-tooltip'>
             {tootipContent}
         </div>
     )
 }
+export default TimelineTooltip;
