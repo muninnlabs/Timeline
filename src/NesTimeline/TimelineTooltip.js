@@ -1,10 +1,10 @@
 import React from 'react'
 import './TimelineTooltip.css';
 
-function TimelineTooltip({tootipContent}) {
+function TimelineTooltip({tooltipContent}) {
     return (
         <div className='timeline-tooltip'>
-            {tootipContent}
+            {tooltipContent}
         </div>
     )
 }

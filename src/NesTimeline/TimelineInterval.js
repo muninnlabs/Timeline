@@ -60,7 +60,7 @@ export default function TimelineInterval({
             </div>
             {hoverInterval && tooltipRenderer && (
                 <div className={tooltipClassname}>
-                    <TimelineTooltip tootipContent={tooltipRenderer(mainItem?.intervalData, previousItem?.intervalData)} />
+                    <TimelineTooltip tooltipContent={tooltipRenderer(mainItem?.intervalData, previousItem?.intervalData)} />
                 </div>
             )}
         </div>

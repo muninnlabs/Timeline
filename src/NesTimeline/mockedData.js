@@ -1,6 +1,23 @@
 import faker from 'faker';
 
 
+//SAMPLE OF USAGE 
+// id: 71,
+// AIRAC: 2002,
+// gregorian: "2002-11-22",
+// span: 1,
+// color: '#b8741a',
+// intervalData: {
+//     key:faker.random.uuid(),
+//     name: 'Jhon Doe',
+//     age: faker.random.number({
+//         min: 10,
+//         max: 50
+//     }),
+//     address: `Avenue Jacques Georgin`
+// }
+
+
 export const timelineData = new Array(10).fill(true).map((index) => {
     return {
         id: faker.random.uuid(),
