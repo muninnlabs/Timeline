@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import './NesTimeline.css';
 import classNames from 'classnames';
-import TimelineCircle from './TimelineCircle';
+import TimelineBoundary from './TimelineBoundary';
 import TimelineInterval from './TimelineInterval';
 import PropTypes from "prop-types";
 
-function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRenderer, isSelectable, formatDate }) {
+function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRenderer, isSelectable = false, formatDate, onClick }) {
     const [selectedInterval, setSelectedInterval] = useState();
 
     const intervalTableRender = (initialValue, finalValue) => {
@@ -20,9 +20,22 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
         setSelectedInterval(interval);
     };
 
+    const isSequentialDate = timelineData.find((data, index) => 
+
+            index!==0 ? (data.start.airac !== timelineData[index-1].end.airac) || 
+                        (data.start.gregorian !== timelineData[index-1].end.gregorian)  : ''
+            ) ? false : true;
+    console.log('isSequentialDate',timelineData.find((data, index) => 
+        index!==0 ? (data.start.airac !== timelineData[index-1].end.airac) || 
+                    (data.start.gregorian !== timelineData[index-1].end.gregorian)  : ''
+        )
+    )
+    console.log('***',selectedInterval);
     return (
         <Fragment>
-            <div className='timeline-wrapper'>
+            {!isSequentialDate && <h5 style={{color: 'red'}}>The dates should be sequential</h5> }
+
+            {isSequentialDate && <div className='timeline-wrapper'>
                 <div className='timeline'>
                     {timelineData &&
                         timelineData
@@ -44,6 +57,17 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
 
                                 return (
                                     <Fragment key={data.id}>
+
+                                        {index=== 0 && <TimelineBoundary
+                                            active={activeCircle}
+                                            airac={data.start.airac}
+                                            gregorian={data.start.gregorian}
+                                            format={formatDate}
+                                            color={newColor}
+                                            type={data.start.type}
+                                            index={index}
+                                        />}
+
                                         <TimelineInterval
                                             mainItem={data}
                                             previousItem={timelineData[index - 1]}
@@ -56,36 +80,24 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                             tooltipRenderer={tooltipDataRenderer}
                                             color={data.color}
                                             disabled={!hasIntervalData}
+                                            onClick={onClick}
                                         />
-
-                                        <TimelineCircle
+                                        
+                                        <TimelineBoundary
                                             active={activeCircle}
-                                            AIRAC={data.AIRAC}
-                                            gregorian={data.gregorian}
+                                            airac={data.end.airac}
+                                            gregorian={data.end.gregorian}
                                             format={formatDate}
                                             color={newColor}
+                                            type={data.end.type}
+                                            index={index}
                                         />
 
-                                        {timelineData.length - 1 === index && (
-                                            <TimelineInterval
-                                                mainItem={data}
-                                                previousItem={timelineData[index - 1]}
-                                                index={index + 1}
-                                                tooltipClassname={classname}
-                                                isSelectable={false}
-                                                isActive={selectedInterval && selectedInterval.index === index + 1}
-                                                selectedInterval={selectedInterval}
-                                                tooltipRenderer={null}
-                                                color={data.color}
-                                                hasIntervalData={hasIntervalData}
-                                                
-                                            />
-                                        )}
                                     </Fragment>
                                 );
                             })}
                 </div>
-            </div>
+            </div>}
 
             {isSelectable && selectedInterval && (
                 <div className='timeline-data-display'>

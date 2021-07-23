@@ -13,15 +13,14 @@ export default function TimelineInterval({
     selectedInterval,
     tooltipRenderer,
     color,
-    disabled = false
+    disabled = false,
+    onClick
 }) {
-
     const [hoverInterval, setHoverInterval] = useState();
     const showTooltip = () => {
         const interval = {
             index: index,
-            initial: previousItem,
-            final: mainItem
+            intevalData: mainItem
         };
         setHoverInterval(interval);
     };
@@ -33,7 +32,7 @@ export default function TimelineInterval({
             color = '#8c8c8c';
         }
     }
-
+    console.log('+-+-+-',hoverInterval)
     return (
         <div
             className={classNames('timeline-interval ', {
@@ -42,7 +41,13 @@ export default function TimelineInterval({
                 'timeline-interval-no-data': disabled
             })}
             onClick={() => {
-                isSelectable && !disabled && onClickHandle(index);
+                if (!disabled) {
+                    if (isSelectable) {
+                        onClickHandle(index);
+                    } else if (onClick) {
+                        onClick(hoverInterval);
+                    }
+                }
             }}
             onMouseOver={() => showTooltip(index)}
             onMouseLeave={() => setHoverInterval()}
@@ -54,13 +59,12 @@ export default function TimelineInterval({
                 className={`timeline-connector ${selectedInterval && selectedInterval.index === index ? 'timeline-connector-active' : ''}`}
                 style={{
                     width: width,
-                    background: color
+                    background: !isActive ? color: ''
                 }}
-            >
-            </div>
+            ></div>
             {hoverInterval && tooltipRenderer && (
                 <div className={tooltipClassname}>
-                    <TimelineTooltip tooltipContent={tooltipRenderer(mainItem?.intervalData, previousItem?.intervalData)} />
+                    <TimelineTooltip tooltipContent={tooltipRenderer(mainItem?.intervalData)} />
                 </div>
             )}
         </div>

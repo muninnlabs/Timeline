@@ -1,5 +1,5 @@
 import NesTimeline from './NesTimeline'
-import {fixedTimelineData, fixedTimelineData2, fixedTimelineData3} from './NesTimeline/mockedData';
+import {fixedTimelineData, fixedTimelineData1, fixedTimelineData2, fixedTimelineData3} from './NesTimeline/mockedData';
 import { Table } from 'antd';
 
 const columns = [
@@ -24,7 +24,6 @@ const columns = [
 ];
 
 const selectedIntervalData = (intervalValue) => {
-
     return (
         <>
             <Table  columns={columns} dataSource={[intervalValue]} pagination={false} />
@@ -38,10 +37,14 @@ const tooltipIntervalData = (initialValue) => {
     )
 }
 
+const onClick = (interval) => {
+    console.log('clicked', interval);
+}
+
 function App() {
     return (
         <div className='App'>
-            <NesTimeline 
+            {/* <NesTimeline 
                 timelineData={fixedTimelineData2} 
                 selectedIntervalRenderer={selectedIntervalData} 
                 tooltipDataRenderer={tooltipIntervalData}
@@ -54,13 +57,22 @@ function App() {
                 tooltipDataRenderer = {tooltipIntervalData}
                 isSelectable = {true}
                 formatDate = 'DD-MMM-YYYY'
-                /> 
+                />  */}
             <NesTimeline 
-                timelineData={fixedTimelineData} 
+                timelineData={fixedTimelineData1} 
+                selectedIntervalRenderer={selectedIntervalData} 
+                tooltipDataRenderer={tooltipIntervalData}
+                isSelectable = {false}
+                formatDate='DD-MM-YYYY'
+                onClick={onClick}
+            />
+            <NesTimeline 
+                timelineData={fixedTimelineData2} 
                 selectedIntervalRenderer={selectedIntervalData} 
                 tooltipDataRenderer={tooltipIntervalData}
                 isSelectable = {true}
                 formatDate='DD-MM-YYYY'
+                
             />
         </div>
     );
