@@ -32,7 +32,7 @@ export default function TimelineInterval({
             color = '#8c8c8c';
         }
     }
-    console.log('+-+-+-',hoverInterval)
+
     return (
         <div
             className={classNames('timeline-interval ', {

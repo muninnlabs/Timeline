@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
-function TimelineBoundary({ active, airac, gregorian, format = 'DD-MM-YYYY', color = '#046fcc', type = 'date', index }) {
+function TimelineBoundary({ active, airac, gregorian, format = 'DD-MM-YYYY', color = '#046fcc', type = 'date' }) {
     return (
         <div className='timeline-boundary'>
             <span
@@ -19,7 +19,6 @@ function TimelineBoundary({ active, airac, gregorian, format = 'DD-MM-YYYY', col
             <div className='date-wrapper'>
                 {!!airac && <span className='airac'>{airac}</span>}
                 {!!gregorian && <span className='gregorian'>{moment(gregorian).format(format)}</span>}
-                { index }
             </div>
         </div>
     );

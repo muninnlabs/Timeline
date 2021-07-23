@@ -79,10 +79,36 @@ export const fixedTimelineData1 = [
 
 export const fixedTimelineData2 = [
     {
-        id: 3004,
+        id: 3001,
         span:1,
         start:{
             type: 'bot'
+        },
+        end:{
+            type: 'date',
+            airac: 1909,
+            gregorian: '1909-01-01',
+        },
+        intervalData: {
+            key:faker.random.uuid(),
+            name: 'Jhon Doe',
+            age: 30,
+            address: `Avenue Jacques Georgin`
+        }, 
+        tooltip:{
+            key:faker.random.uuid(),
+            name: 'Jhon Doe',
+            age: 30,
+            address: `Avenue Jacques Georgin`
+        }
+    },
+    {
+        id: 3004,
+        span:1,
+        start:{
+            type: 'date',
+            airac: 1909,
+            gregorian: '1909-01-01',
         },
         end:{
             type: 'date',
