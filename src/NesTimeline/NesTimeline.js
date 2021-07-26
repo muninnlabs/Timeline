@@ -26,8 +26,6 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
             : ''
     );
 
-    console.log()
-
     return (
         <Fragment>
             {isSequentialDate && <h5 style={{ color: 'red' }}>The dates should be sequential! Error at id {isSequentialDate?.id}</h5>}
@@ -40,18 +38,18 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                 .sort((a, b) => (a.id > b.id ? 1 : -1))
                                 .map((data, index) => {
                                     const classname = classNames('tooltip-wrapper', {
-                                        'tooltip-wrapper__first': index === 0,
+                                        'tooltip-wrapper__first': index === 0 || timelineData.length === 1,
                                         'tooltip-wrapper__second': index === 1,
                                         'tooltip-wrapper__third': index === 2,
-                                        'tooltip-wrapper__secondLast': timelineData.length - 2 === index,
-                                        'tooltip-wrapper__thirdLast': timelineData.length - 3 === index,
-                                        'tooltip-wrapper__last': timelineData.length - 1 === index
+                                        'tooltip-wrapper__secondLast': timelineData.length - 2 === index && timelineData.length > 4,
+                                        'tooltip-wrapper__thirdLast': timelineData.length - 3 === index && timelineData.length > 4,
+                                        'tooltip-wrapper__last': timelineData.length - 1 === index && timelineData.length > 4
                                     });
 
                                     const activeCircle =
                                         selectedInterval && (selectedInterval.index === index || selectedInterval.index === index + 1);
                                     const newColor = timelineData[index + 1]?.color ? timelineData[index + 1].color : data.color;
-                                    const hasIntervalData = !!data.intervalData;
+                                    const isEmptyIntervalData =  data.intervalData === undefined || data.intervalData.length === 0 ;
 
                                     return (
                                         <Fragment key={data.id}>
@@ -77,7 +75,7 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                                 selectedInterval={selectedInterval}
                                                 tooltipRenderer={tooltipDataRenderer}
                                                 color={data.color}
-                                                disabled={!hasIntervalData}
+                                                disabled={isEmptyIntervalData}
                                                 onClick={onClick}
                                             />
 
@@ -113,7 +111,8 @@ NesTimeline.propTypes = {
             gregorian: PropTypes.date,
             span: PropTypes.number,
             color: PropTypes.string,
-            intervalData: PropTypes.object
+            intervalData: PropTypes.array,
+            tooltipData: PropTypes.array
         })
     ),
     selectedIntervalRenderer: PropTypes.func,
