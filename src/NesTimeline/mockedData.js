@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { date } from 'faker/locale/zh_TW';
+
 
 // id: number,
 // span: Number,
@@ -147,7 +147,7 @@ export const fixedTimelineData2 = [
         },
         end:{
             type: 'date',
-            airac: 1912,
+            airac: 1911,
             gregorian: '1911-01-02',
         },
         intervalData: [{

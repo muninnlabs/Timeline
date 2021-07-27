@@ -20,17 +20,37 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
         setSelectedInterval(interval);
     };
 
-    const isSequentialDate = timelineData.find((data, index) =>
-        index !== 0
-            ? data.start.airac !== timelineData[index - 1].end.airac || data.start.gregorian !== timelineData[index - 1].end.gregorian
-            : ''
-    );
+    const isEmptyObj = (obj) => {
+        return Object.keys(obj).length === 0;
+    };
+
+    const validateDate = (date) => {
+        return !isEmptyObj(date) && date.type === 'date';
+    };
+
+    const isValidString = (str) => {
+        return str && str !== '';
+    };
+
+    const isNotSequentialDate = timelineData.find((data, index) => {
+        if (index !== 0 && validateDate(data.start) && validateDate(data.end)) {
+            if (isValidString(data.start.airac) && isValidString(data.end.airac)) {
+                return data.start.airac !== timelineData[index - 1].end.airac;
+            } else if (isValidString(data.start.gregorian) && isValidString(data.end.gregorian)) {
+                return data.start.gregorian !== timelineData[index - 1].end.gregorian;
+            } else {
+                return true;
+            }
+        } else {
+            return isEmptyObj(data.start) || isEmptyObj(data.end);
+        }
+    });
 
     return (
         <Fragment>
-            {isSequentialDate && <h5 style={{ color: 'red' }}>The dates should be sequential! Error at id {isSequentialDate?.id}</h5>}
+            {isNotSequentialDate && <h5 style={{ color: 'red' }}>The dates should be sequential! Error at id {isNotSequentialDate?.id}</h5>}
 
-            {!isSequentialDate && (
+            {!isNotSequentialDate && (
                 <div className='timeline-wrapper'>
                     <div className='timeline'>
                         {timelineData &&
@@ -49,7 +69,7 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                     const activeCircle =
                                         selectedInterval && (selectedInterval.index === index || selectedInterval.index === index + 1);
                                     const newColor = timelineData[index + 1]?.color ? timelineData[index + 1].color : data.color;
-                                    const isEmptyIntervalData =  data.intervalData === undefined || data.intervalData.length === 0 ;
+                                    const isEmptyIntervalData = data.intervalData === undefined || data.intervalData.length === 0;
 
                                     return (
                                         <Fragment key={data.id}>

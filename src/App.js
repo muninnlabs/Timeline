@@ -1,5 +1,5 @@
-import NesTimeline from './NesTimeline'
-import {noDates, fixedTimelineData1, fixedTimelineData2, fixedTimelineData3, fixedTimelineData4} from './NesTimeline/mockedData';
+import NesTimeline from './NesTimeline';
+import { noDates, fixedTimelineData1, fixedTimelineData2, fixedTimelineData3, fixedTimelineData4 } from './NesTimeline/mockedData';
 import { Table } from 'antd';
 
 const columns = [
@@ -26,63 +26,60 @@ const columns = [
 const selectedIntervalData = (intervalValue) => {
     return (
         <>
-            <Table  columns={columns} dataSource={intervalValue} pagination={false} />
+            <Table columns={columns} dataSource={intervalValue} pagination={false} />
         </>
     );
-}
+};
 
 const tooltipIntervalData = (initialValue) => {
-    return(
-        <Table columns={columns} dataSource={initialValue} pagination={false} />
-    )
-}
+    return <Table columns={columns} dataSource={initialValue} pagination={false} />;
+};
 
 const onClick = (interval) => {
     console.log('clicked', interval);
-}
+};
 
 function App() {
     return (
         <div className='App'>
-            <NesTimeline 
-                timelineData={fixedTimelineData1} 
-                selectedIntervalRenderer={selectedIntervalData} 
+            <NesTimeline
+                timelineData={fixedTimelineData1}
+                selectedIntervalRenderer={selectedIntervalData}
                 tooltipDataRenderer={tooltipIntervalData}
-                isSelectable = {false}
-                formatDate='DD-MM-YYYY'
-                onClick={onClick}
-                />
-            <NesTimeline 
-                timelineData={noDates} 
-                selectedIntervalRenderer={selectedIntervalData} 
-                tooltipDataRenderer={tooltipIntervalData}
-                isSelectable = {false}
+                isSelectable={false}
                 formatDate='DD-MM-YYYY'
                 onClick={onClick}
             />
-            <NesTimeline 
-                timelineData = {fixedTimelineData3} 
-                selectedIntervalRenderer = {selectedIntervalData} 
-                tooltipDataRenderer = {tooltipIntervalData}
-                isSelectable = {false}
-                formatDate = 'DD-MMM-YYYY'
-                onClick={onClick}
-            />  
-            <NesTimeline 
-                timelineData = {fixedTimelineData4} 
-                selectedIntervalRenderer = {selectedIntervalData} 
-                tooltipDataRenderer = {tooltipIntervalData}
-                isSelectable = {false}
-                formatDate = 'DD-MMM-YYYY'
-                onClick={onClick}
-            />  
-            <NesTimeline 
-                timelineData={fixedTimelineData2} 
-                selectedIntervalRenderer={selectedIntervalData} 
+            <NesTimeline
+                timelineData={noDates}
+                selectedIntervalRenderer={selectedIntervalData}
                 tooltipDataRenderer={tooltipIntervalData}
-                isSelectable = {true}
+                isSelectable={false}
                 formatDate='DD-MM-YYYY'
-                
+                onClick={onClick}
+            />
+            <NesTimeline
+                timelineData={fixedTimelineData3}
+                selectedIntervalRenderer={selectedIntervalData}
+                tooltipDataRenderer={tooltipIntervalData}
+                isSelectable={false}
+                formatDate='DD-MMM-YYYY'
+                onClick={onClick}
+            />
+            <NesTimeline
+                timelineData={fixedTimelineData4}
+                selectedIntervalRenderer={selectedIntervalData}
+                tooltipDataRenderer={tooltipIntervalData}
+                isSelectable={false}
+                formatDate='DD-MMM-YYYY'
+                onClick={onClick}
+            />
+            <NesTimeline
+                timelineData={fixedTimelineData2}
+                selectedIntervalRenderer={selectedIntervalData}
+                tooltipDataRenderer={tooltipIntervalData}
+                isSelectable={true}
+                formatDate='DD-MM-YYYY'
             />
         </div>
     );
