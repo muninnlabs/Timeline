@@ -44,9 +44,8 @@ export default function TimelineInterval({
                 if (!disabled) {
                     if (isSelectable) {
                         onClickHandle(index);
-                    } else if (onClick) {
-                        onClick(hoverInterval);
                     }
+                    onClick(hoverInterval);
                 }
             }}
             onMouseOver={() => showTooltip(index)}
@@ -59,7 +58,7 @@ export default function TimelineInterval({
                 className={`timeline-connector ${selectedInterval && selectedInterval.index === index ? 'timeline-connector-active' : ''}`}
                 style={{
                     width: width,
-                    background: !isActive ? color: ''
+                    background: !isActive ? color : ''
                 }}
             ></div>
             {hoverInterval && tooltipRenderer && (
