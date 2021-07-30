@@ -7,17 +7,18 @@ import PropTypes from 'prop-types';
 
 function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRenderer, isSelectable = false, formatDate, onClick }) {
     const [selectedInterval, setSelectedInterval] = useState();
+    let indexSelecedInterval;
 
     useEffect(() => {
         intervalClickHandling(indexSelecedInterval);
-    }, [timelineData]);
+    }, [indexSelecedInterval]);
 
     const intervalTableRender = (initialValue, finalValue) => {
         return selectedIntervalRenderer(initialValue, finalValue);
     };
 
     const intervalClickHandling = (intervalPosition) => {
-        if (!intervalPosition) return;
+        if (intervalPosition === undefined) return;
         const interval = {
             index: intervalPosition,
             initial: timelineData[intervalPosition]
@@ -50,8 +51,6 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
             return isEmptyObj(data.start) || isEmptyObj(data.end);
         }
     });
-
-    let indexSelecedInterval;
 
     return (
         <Fragment>

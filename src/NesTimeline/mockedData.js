@@ -76,7 +76,7 @@ export const fixedTimelineData2 = [
     {
         id: 3001,
         span:1,
-        color: 'black',
+        isSelected: true,
         start:{
             type: 'bot'
         },
@@ -101,7 +101,6 @@ export const fixedTimelineData2 = [
     {
         id: 3004,
         span:1,
-        isSelected: true,
         start:{
             type: 'date',
             airac: 1909,
