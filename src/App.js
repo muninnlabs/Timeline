@@ -80,7 +80,7 @@ function App() {
                 tooltipDataRenderer={tooltipIntervalData}
                 isSelectable={true}
                 formatDate='DD-MM-YYYY'
-            />
+            /> 
         </div>
     );
 }

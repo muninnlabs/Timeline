@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import './NesTimeline.css';
 import classNames from 'classnames';
 import TimelineBoundary from './TimelineBoundary';
@@ -8,11 +8,16 @@ import PropTypes from 'prop-types';
 function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRenderer, isSelectable = false, formatDate, onClick }) {
     const [selectedInterval, setSelectedInterval] = useState();
 
+    useEffect(() => {
+        intervalClickHandling(indexSelecedInterval);
+    }, [timelineData]);
+
     const intervalTableRender = (initialValue, finalValue) => {
         return selectedIntervalRenderer(initialValue, finalValue);
     };
 
     const intervalClickHandling = (intervalPosition) => {
+        if (!intervalPosition) return;
         const interval = {
             index: intervalPosition,
             initial: timelineData[intervalPosition]
@@ -46,6 +51,8 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
         }
     });
 
+    let indexSelecedInterval;
+
     return (
         <Fragment>
             {isNotSequentialDate && <h5 style={{ color: 'red' }}>The dates should be sequential! Error at id {isNotSequentialDate?.id}</h5>}
@@ -65,6 +72,10 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                         'tooltip-wrapper__thirdLast': timelineData.length - 3 === index && timelineData.length > 4,
                                         'tooltip-wrapper__last': timelineData.length - 1 === index && timelineData.length > 4
                                     });
+
+                                    if (data.isSelected) {
+                                        indexSelecedInterval = index;
+                                    }
 
                                     const activeCircle =
                                         selectedInterval && (selectedInterval.index === index || selectedInterval.index === index + 1);
