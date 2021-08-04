@@ -1,6 +1,7 @@
 import NesTimeline from './NesTimeline';
 import { noDates, fixedTimelineData1, fixedTimelineData2, fixedTimelineData3, fixedTimelineData4 } from './NesTimeline/mockedData';
 import { Table } from 'antd';
+import React, { useState } from 'react';
 
 const columns = [
     {
@@ -35,11 +36,32 @@ const tooltipIntervalData = (initialValue) => {
     return <Table columns={columns} dataSource={initialValue} pagination={false} />;
 };
 
-const onClick = (interval) => {
-    console.log('clicked', interval);
+const onClick = (interval ) => {
+    console.log('clicked', interval );
 };
 
+const onClickfixedTimelineData1 = (interval ) => {
+    console.log('clicked', interval );
+};
+
+
 function App() {
+    
+    const [stateFixedTimelineData2, setStateFixedTimelineData2] = useState(fixedTimelineData2);
+    
+    const onClickfixedTimelineData2 = (interval ) => {
+        setStateFixedTimelineData2(
+            stateFixedTimelineData2.map((data)=>{
+                if(data.id === interval.id) {
+                    data.isSelected = true;
+                }else{
+                    data.isSelected = false;
+                }
+                return data;
+            })
+        )
+    };
+
     return (
         <div className='App'>
             <NesTimeline
@@ -48,7 +70,7 @@ function App() {
                 tooltipDataRenderer={tooltipIntervalData}
                 isSelectable={false}
                 formatDate='DD-MM-YYYY'
-                onClick={onClick}
+                onClick={onClickfixedTimelineData1}
             />
             <NesTimeline
                 timelineData={noDates}
@@ -65,7 +87,7 @@ function App() {
                 isSelectable={false}
                 formatDate='DD-MMM-YYYY'
                 onClick={onClick}
-            />
+                />
             <NesTimeline
                 timelineData={fixedTimelineData4}
                 selectedIntervalRenderer={selectedIntervalData}
@@ -73,14 +95,15 @@ function App() {
                 isSelectable={false}
                 formatDate='DD-MMM-YYYY'
                 onClick={onClick}
-            />
+                />
             <NesTimeline
-                timelineData={fixedTimelineData2}
+                timelineData={stateFixedTimelineData2}
                 selectedIntervalRenderer={selectedIntervalData}
                 tooltipDataRenderer={tooltipIntervalData}
                 isSelectable={true}
                 formatDate='DD-MM-YYYY'
-            /> 
+                onClick={onClickfixedTimelineData2}
+                /> 
         </div>
     );
 }

@@ -3,6 +3,7 @@ import faker from 'faker';
 
 // id: number,
 // span: Number,
+// isSelected: boolean (default  = false),
 // start:{
 //     type: String 'date', 'ufn', 'bot'
 //     airac: number,
@@ -76,7 +77,7 @@ export const fixedTimelineData2 = [
     {
         id: 3001,
         span:1,
-        isSelected: true,
+        isSelected: false,
         start:{
             type: 'bot'
         },
@@ -100,6 +101,7 @@ export const fixedTimelineData2 = [
     },
     {
         id: 3004,
+        isSelected: true,
         span:1,
         start:{
             type: 'date',
@@ -141,6 +143,7 @@ export const fixedTimelineData2 = [
     {
         id: 3005,
         span:1,
+        isSelected: false,
         start:{
             type: 'date',
             airac: 1911,
@@ -167,6 +170,7 @@ export const fixedTimelineData2 = [
     {
         id: 3006,
         span:1,
+        isSelected: false,
         start:{
             type: 'date',
             airac: 1912,

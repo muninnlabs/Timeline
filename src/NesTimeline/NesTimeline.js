@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import './NesTimeline.css';
 import classNames from 'classnames';
 import TimelineBoundary from './TimelineBoundary';
@@ -6,24 +6,15 @@ import TimelineInterval from './TimelineInterval';
 import PropTypes from 'prop-types';
 
 function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRenderer, isSelectable = false, formatDate, onClick }) {
-    const [selectedInterval, setSelectedInterval] = useState();
-    let indexSelecedInterval;
 
-    useEffect(() => {
-        intervalClickHandling(indexSelecedInterval);
-    }, [indexSelecedInterval]);
+    const newSelected = timelineData.find(td => td.isSelected);
+    const selectedInterval = {
+        index: timelineData.indexOf(newSelected),
+        initial: newSelected
+    };
 
     const intervalTableRender = (initialValue, finalValue) => {
         return selectedIntervalRenderer(initialValue, finalValue);
-    };
-
-    const intervalClickHandling = (intervalPosition) => {
-        if (intervalPosition === undefined) return;
-        const interval = {
-            index: intervalPosition,
-            initial: timelineData[intervalPosition]
-        };
-        setSelectedInterval(interval);
     };
 
     const isEmptyObj = (obj) => {
@@ -72,10 +63,6 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                         'tooltip-wrapper__last': timelineData.length - 1 === index && timelineData.length > 4
                                     });
 
-                                    if (data.isSelected) {
-                                        indexSelecedInterval = index;
-                                    }
-
                                     const activeCircle =
                                         selectedInterval && (selectedInterval.index === index || selectedInterval.index === index + 1);
                                     const newColor = timelineData[index + 1]?.color ? timelineData[index + 1].color : data.color;
@@ -101,7 +88,6 @@ function NesTimeline({ timelineData, selectedIntervalRenderer, tooltipDataRender
                                                 tooltipClassname={classname}
                                                 isSelectable={isSelectable}
                                                 isActive={selectedInterval && selectedInterval.index === index}
-                                                onClickHandle={intervalClickHandling}
                                                 selectedInterval={selectedInterval}
                                                 tooltipRenderer={tooltipDataRenderer}
                                                 color={data.color}

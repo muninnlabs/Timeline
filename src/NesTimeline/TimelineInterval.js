@@ -9,18 +9,18 @@ export default function TimelineInterval({
     tooltipClassname,
     isSelectable,
     isActive,
-    onClickHandle,
+    // onClickHandle,
     selectedInterval,
     tooltipRenderer,
     color,
     disabled = false,
-    onClick
+    onClick = ()=>{}
 }) {
     const [hoverInterval, setHoverInterval] = useState();
     const showTooltip = () => {
         const interval = {
             index: index,
-            intevalData: mainItem
+            intervalData: mainItem
         };
         setHoverInterval(interval);
     };
@@ -43,9 +43,9 @@ export default function TimelineInterval({
             onClick={() => {
                 if (!disabled) {
                     if (isSelectable) {
-                        onClickHandle(index);
+                        // onClickHandle(index);
+                        onClick(hoverInterval.intervalData);
                     }
-                    onClick(hoverInterval);
                 }
             }}
             onMouseOver={() => showTooltip(index)}
