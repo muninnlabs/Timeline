@@ -44,6 +44,9 @@ function TimelineBoundary({ active, airac, gregorian, format = 'DD-MM-YYYY', col
             <div className='date-wrapper'>
                 {!!airac && <span className='airac'>{airac}</span>}
                 {!!gregorian && <span className='gregorian'>{moment(gregorian).format(format)}</span>}
+                {type === 'bot' && <span className='airac bot'>BOT</span>}
+                {type === 'ufn' && <span className='airac ufn'>UFN</span>}
+
             </div>
         </div>
     );

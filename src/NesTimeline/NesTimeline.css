@@ -271,6 +271,13 @@
     margin: 10px 0 4px;
 }
 
+.timeline .timeline-boundary .date-wrapper .ufn {
+    margin-left: 10px;
+}
+.timeline .timeline-boundary .date-wrapper .bot {
+    margin-left: -18px;
+}
+
 .timeline .timeline-boundary .date-wrapper .gregorian {
     font-size: 10px;
     display: block;
