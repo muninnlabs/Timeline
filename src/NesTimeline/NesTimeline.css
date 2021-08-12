@@ -250,7 +250,8 @@
 }
 
 .timeline .timeline-boundary .timeline-boundary-active {
-    border-color: #b8741a;
+    border-color: #b8741a !important;
+    fill: #b8741a;
 }
 
 .timeline .timeline-boundary .date-wrapper {

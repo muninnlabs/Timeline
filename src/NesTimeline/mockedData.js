@@ -3,6 +3,7 @@ import faker from 'faker';
 
 // id: number,
 // span: Number,
+// color: string (hexa, rgb, rgba)
 // isSelected: boolean (default  = false),
 // start:{
 //     type: String 'date', 'ufn', 'bot'
@@ -78,6 +79,7 @@ export const fixedTimelineData2 = [
         id: 3001,
         span:1,
         isSelected: false,
+        color: 'red',
         start:{
             type: 'bot'
         },
@@ -171,10 +173,38 @@ export const fixedTimelineData2 = [
         id: 3006,
         span:1,
         isSelected: false,
+        color: '#91ff00',
         start:{
             type: 'date',
-            airac: 1912,
+            airac: 1911,
             gregorian: '1911-01-02',
+        },
+        end:{
+            type: 'date',
+            airac: 1913,
+            gregorian: '1911-01-03',
+        },
+        intervalData:[{
+            key:faker.random.uuid(),
+            name: 'Jane Doe',
+            age: 10,
+            address: `Avenue Jacques Georgin`
+        }], 
+        tooltip: [{
+            key:faker.random.uuid(),
+            name: 'Jane Doe',
+            age: 10,
+            address: `Avenue Jacques Georgin`
+        }]
+    },
+    {
+        id: 3007,
+        span:1,
+        isSelected: false,
+        start:{
+            type: 'date',
+            airac: 1913,
+            gregorian: '1911-01-03',
         },
         end:{
             type: 'ufn'
